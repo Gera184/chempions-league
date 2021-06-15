@@ -82,6 +82,7 @@ export default function Players() {
     alert("no way jose");
     setMinAge(15);
   }
+
   return (
     <>
       <Countries />

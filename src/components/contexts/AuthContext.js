@@ -29,12 +29,15 @@ export function AuthProvider({ children }) {
   const Countries = () => {
     return (
       <>
-        <div className="row justify-content-md-center">
+        <div
+          style={{ paddingTop: "30px" }}
+          className="row justify-content-md-center"
+        >
           <div className="col">
             {countries ? (
               <select
                 class="form-select"
-                size="9"
+                size="8"
                 style={{
                   fontSize: "large",
                   textAlign: "center",
