@@ -12,7 +12,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [countries, setCountries] = useState();
   const [dropdown, setDropdown] = useState();
-  var API_KEY = "a8f07e90-c918-11eb-9b3b-abc29b57575d";
+  var API_KEY = "2ff0e990-cddc-11eb-8b17-2798f47b257a";
   const URL = `https://app.sportdataapi.com/api/v1/soccer/countries?apikey=${API_KEY}`;
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
       .request(URL)
       .then(function (response) {
         setCountries(response.data.data);
+        console.log(response.data.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -30,19 +31,21 @@ export function AuthProvider({ children }) {
     return (
       <>
         <div
-          style={{ paddingTop: "30px" }}
+          style={{ paddingTop: "10px" }}
           className="row justify-content-md-center"
         >
           <div className="col">
             {countries ? (
               <select
-                class="form-select"
-                size="8"
+                className="form-select"
+                size="7"
                 style={{
                   fontSize: "large",
                   textAlign: "center",
                   background: "whitesmoke",
                   color: "black ",
+                  width: "500px",
+                  height: "500px"
                 }}
                 value={dropdown}
                 onChange={(e) => {
@@ -50,9 +53,13 @@ export function AuthProvider({ children }) {
                 }}
               >
                 {countries.map((country, index) => (
-                  <option key={index} value={index}>
-                    {country.name}
-                  </option>
+                  <>
+                    {index > 7 && (
+                      <option key={index} value={index}>
+                        {country.name}
+                      </option>
+                    )}
+                  </>
                 ))}
               </select>
             ) : null}
