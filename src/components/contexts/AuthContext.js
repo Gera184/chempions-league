@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { FaHandPointUp } from "react-icons/fa";
-import { Leagues } from "../leagues/Leagues";
-import { Teams } from "../teams/Teams";
 
 const AuthContext = React.createContext();
 
@@ -11,6 +9,7 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
   const [countries, setCountries] = useState();
+  const [loading, setLoading] = useState(false);
   const [dropdown, setDropdown] = useState();
   var API_KEY = "2ff0e990-cddc-11eb-8b17-2798f47b257a";
   const URL = `https://app.sportdataapi.com/api/v1/soccer/countries?apikey=${API_KEY}`;
@@ -30,41 +29,51 @@ export function AuthProvider({ children }) {
   const Countries = () => {
     return (
       <>
-        <div
-          style={{ paddingTop: "10px" }}
-          className="row justify-content-md-center"
-        >
-          <div className="col">
-            {countries ? (
-              <select
-                className="form-select"
-                size="7"
-                style={{
-                  fontSize: "large",
-                  textAlign: "center",
-                  background: "whitesmoke",
-                  color: "black ",
-                  width: "500px",
-                  height: "500px"
-                }}
-                value={dropdown}
-                onChange={(e) => {
-                  setDropdown(e.target.value);
-                }}
-              >
-                {countries.map((country, index) => (
-                  <>
-                    {index > 7 && (
-                      <option key={index} value={index}>
-                        {country.name}
-                      </option>
-                    )}
-                  </>
-                ))}
-              </select>
-            ) : null}
+        {!loading ? (
+          <button
+            onClick={(e) => {
+              setLoading(true);
+            }}
+          >
+            Click
+          </button>
+        ) : null}
+
+        {loading ? (
+          <div
+            style={{ paddingTop: "10px" }}
+            className="row justify-content-md-center"
+          >
+            <div className="col">
+              {countries ? (
+                <select
+                  className="form-select"
+                  size="7"
+                  style={{
+                    fontSize: "large",
+                    textAlign: "center",
+                    background: "whitesmoke",
+                    color: "black ",
+                  }}
+                  value={dropdown}
+                  onChange={(e) => {
+                    setDropdown(e.target.value);
+                  }}
+                >
+                  {countries.map((country, index) => (
+                    <>
+                      {index > 7 && (
+                        <option key={index} value={index}>
+                          {country.name}
+                        </option>
+                      )}
+                    </>
+                  ))}
+                </select>
+              ) : null}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <div className="container">
           <div className="row">
