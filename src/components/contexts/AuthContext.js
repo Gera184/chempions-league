@@ -29,23 +29,14 @@ export function AuthProvider({ children }) {
   const Countries = () => {
     return (
       <>
-        {!loading ? (
-          <button
-            onClick={(e) => {
-              setLoading(true);
-            }}
-          >
-            Click
-          </button>
-        ) : null}
-
-        {loading ? (
-          <div
-            style={{ paddingTop: "10px" }}
-            className="row justify-content-md-center"
-          >
-            <div className="col">
-              {countries ? (
+        <div
+          style={{ paddingTop: "10px" }}
+          className="row justify-content-md-center"
+        >
+          <div className="col text-center">
+            {countries ? (
+              <>
+                <span>Country Select</span>
                 <select
                   className="form-select"
                   size="7"
@@ -70,10 +61,10 @@ export function AuthProvider({ children }) {
                     </>
                   ))}
                 </select>
-              ) : null}
-            </div>
+              </>
+            ) : null}
           </div>
-        ) : null}
+        </div>
 
         <div className="container">
           <div className="row">
