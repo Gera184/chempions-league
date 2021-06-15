@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { AuthProvider } from "./components/contexts/AuthContext";
+import { Teams } from "./components/teams/Teams.js";
+import Header from "./components/header/Header";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Leagues } from "./components/leagues/Leagues";
+import Players from "./components/players/Players";
+import Stadium from "./components/stadiums/Stadium";
+import Referees from "./components/referees/Referees";
 
-function App() {
+export default () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        paddingTop: "95px",
+        fontFamily: "Sofia sans-serif",
+        background: "whitesmoke",
+        overflowX: "hidden",
+      }}
+    >
+      <AuthProvider>
+        <Header />
+        <Router>
+          <Switch>
+            <Route exact path="/leagues" component={Leagues} />
+            <Route exact path="/teams" component={Teams} />
+            <Route exact path="/players" component={Players} />
+            <Route exact path="/stadiums" component={Stadium} />
+            <Route exact path="/referees" component={Referees} />
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
-}
-
-export default App;
+};
