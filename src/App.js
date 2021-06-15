@@ -23,6 +23,7 @@ export default () => {
         <Router>
           <Switch>
             <Route exact path="/leagues" component={Leagues} />
+            <Route exact path="/" component={Leagues} />
             <Route exact path="/teams" component={Teams} />
             <Route exact path="/players" component={Players} />
             <Route exact path="/stadiums" component={Stadium} />

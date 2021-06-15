@@ -29,32 +29,30 @@ export function AuthProvider({ children }) {
   const Countries = () => {
     return (
       <>
-        <div className="container">
-          <div className="row justify-content-md-center">
-            <div className="col">
-              {countries ? (
-                <select
-                  class="form-select"
-                  size="7"
-                  style={{
-                    fontSize: "large",
-                    textAlign: "center",
-                    background: "whitesmoke",
-                    color: "black ",
-                  }}
-                  value={dropdown}
-                  onChange={(e) => {
-                    setDropdown(e.target.value);
-                  }}
-                >
-                  {countries.map((country, index) => (
-                    <option key={index} value={index}>
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-              ) : null}
-            </div>
+        <div className="row justify-content-md-center">
+          <div className="col">
+            {countries ? (
+              <select
+                class="form-select"
+                size="9"
+                style={{
+                  fontSize: "large",
+                  textAlign: "center",
+                  background: "whitesmoke",
+                  color: "black ",
+                }}
+                value={dropdown}
+                onChange={(e) => {
+                  setDropdown(e.target.value);
+                }}
+              >
+                {countries.map((country, index) => (
+                  <option key={index} value={index}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
+            ) : null}
           </div>
         </div>
 
